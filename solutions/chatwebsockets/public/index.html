@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f5f1">
+    <title>Commonroom | Live chat</title>
+    <script>
+      if (localStorage.getItem('commonroom.theme') === 'dark') {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/message-search.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Chat navigation">
+        <a class="brand" href="/" aria-label="Commonroom home">
+          <span class="brand-mark" aria-hidden="true">c</span>
+          <span>commonroom</span>
+        </a>
+
+        <div class="workspace-label">YOUR SPACE</div>
+        <button class="room-link is-active" type="button" aria-current="page">
+          <span class="room-hash" aria-hidden="true">#</span>
+          <span>The Commons</span>
+          <span class="room-live" aria-label="Live room"></span>
+        </button>
+
+        <div class="people-heading">
+          <span>HERE NOW</span>
+          <span id="online-count" class="count-pill">0</span>
+        </div>
+        <ul id="people-list" class="people-list" aria-live="polite"></ul>
+
+        <div class="sidebar-bottom">
+          <div class="connection-copy">
+            <span id="connection-dot" class="connection-dot" aria-hidden="true"></span>
+            <span id="connection-label">Connecting</span>
+          </div>
+          <button id="change-name" class="change-name" type="button">Change display name</button>
+        </div>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="room-header">
+          <div class="room-heading">
+            <div class="room-overline">OPEN ROOM <span aria-hidden="true">/</span> EVERYONE IS WELCOME</div>
+            <h1><span class="heading-hash" aria-hidden="true">#</span> The Commons</h1>
+            <p>A little corner of the internet to catch up.</p>
+          </div>
+          <div class="header-tools">
+            <div class="live-status"><span class="live-pulse" aria-hidden="true"></span> LIVE</div>
+            <button id="theme-toggle" class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Toggle dark mode">
+              <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+              <span class="theme-toggle-label">Dark mode</span>
+            </button>
+            <button id="search-toggle" class="search-button" type="button" title="Search messages" aria-expanded="false" aria-controls="search-panel">Search</button>
+            <button id="share-room" class="share-button" type="button" title="Copy room link">
+              <span aria-hidden="true">↗</span> <span>Invite</span>
+            </button>
+          </div>
+          <div id="search-panel" class="search-panel" role="search" hidden>
+            <input id="message-search" type="search" placeholder="Find a message or person…" aria-label="Search messages and senders">
+            <span id="search-count" class="search-count" aria-live="polite"></span>
+            <button id="clear-search" class="clear-search" type="button">Clear</button>
+          </div>
+        </header>
+
+        <section id="feed" class="message-feed" role="log" aria-label="Room messages" aria-live="polite" aria-relevant="additions">
+          <div class="day-divider"><span>MESSAGES IN THE COMMONS</span></div>
+          <div id="welcome-note" class="welcome-note">
+            <div class="welcome-symbol" aria-hidden="true">✳</div>
+            <div>
+              <h2>Make yourself at home.</h2>
+              <p>Say hello, share a thought, or drop in a photo.</p>
+            </div>
+          </div>
+        </section>
+
+        <div id="typing-note" class="typing-note" aria-live="polite"></div>
+        <footer class="composer-wrap">
+          <form id="message-form" class="composer">
+            <textarea id="message-input" rows="1" maxlength="2000" placeholder="Write something to the room..." aria-label="Write a message" disabled></textarea>
+            <div class="composer-tools">
+              <div class="composer-hint"><kbd>Enter</kbd> to send <span>·</span> <kbd>Shift + Enter</kbd> for a new line</div>
+              <div class="composer-actions">
+                <button id="photo-button" class="photo-button" type="button" title="Share a photo" disabled>
+                  <span aria-hidden="true">＋</span> Photo
+                </button>
+                <button id="send-button" class="send-button" type="submit" disabled>
+                  Send <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </div>
+          </form>
+          <div id="notice" class="notice" role="status" aria-live="polite"></div>
+        </footer>
+      </main>
+    </div>
+
+    <section id="login-screen" class="login-screen" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+      <form id="login-form" class="login-panel">
+        <div class="login-brand"><span class="brand-mark" aria-hidden="true">c</span> commonroom</div>
+        <p class="login-kicker">A GOOD PLACE TO LAND</p>
+        <h2 id="login-title">Come on in.</h2>
+        <p class="login-copy">Choose the name people will see in The Commons.</p>
+        <label for="display-name">Your display name</label>
+        <input id="display-name" name="displayName" maxlength="32" autocomplete="nickname" placeholder="e.g. Morgan Lee" required>
+        <button class="login-submit" type="submit">Join the conversation <span aria-hidden="true">↗</span></button>
+        <p id="login-error" class="login-error" role="alert"></p>
+      </form>
+    </section>
+  </body>
+</html>
