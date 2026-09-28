@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f4ef">
+    <title>Ledger | Expense tracker</title>
+    <script src="/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/charts.js"></script>
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <aside class="rail">
+      <a class="wordmark" href="/" aria-label="Ledger dashboard home"><span class="wordmark-icon">L</span><span>ledger<span class="wordmark-period">.</span></span></a>
+      <div class="rail-label">WORKSPACE</div>
+      <nav class="rail-nav" aria-label="Main navigation">
+        <a class="rail-link active" href="/" aria-current="page"><span class="nav-icon icon-overview" aria-hidden="true"></span>Overview</a>
+        <a class="rail-link" href="#transactions"><span class="nav-icon icon-transactions" aria-hidden="true"></span>Transactions</a>
+      </nav>
+      <div class="rail-bottom"><span class="rail-dot"></span><span>PERSONAL LEDGER</span><span class="rail-version">01</span></div>
+    </aside>
+
+    <main class="dashboard">
+      <header class="topbar">
+        <div><span class="topbar-kicker">YOUR MONEY, IN FOCUS</span><h1>Overview</h1></div>
+        <div class="topbar-actions"><label class="month-select-wrap"><span class="sr-only">Summary month</span><input data-month type="month"></label><button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button><button class="icon-button" data-refresh type="button" aria-label="Refresh dashboard" title="Refresh dashboard"><span class="refresh-icon" aria-hidden="true">↻</span></button></div>
+      </header>
+
+      <section class="metric-grid" aria-label="Monthly spending summary">
+        <article class="metric-card metric-primary"><div class="metric-top"><span class="metric-label">TOTAL SPENT</span><span class="metric-symbol symbol-total" aria-hidden="true">↗</span></div><strong data-month-total>$0.00</strong><span class="metric-foot" data-month-caption>This month</span></article>
+        <article class="metric-card"><div class="metric-top"><span class="metric-label">TRANSACTIONS</span><span class="metric-symbol" aria-hidden="true">#</span></div><strong data-expense-count>0</strong><span class="metric-foot">Recorded this month</span></article>
+        <article class="metric-card"><div class="metric-top"><span class="metric-label">TOP CATEGORY</span><span class="metric-symbol symbol-category" aria-hidden="true">◒</span></div><strong class="metric-category" data-top-category>—</strong><span class="metric-foot" data-top-category-total>No spending yet</span></article>
+      </section>
+
+      <section class="analytics-grid" aria-label="Spending analytics">
+        <article class="panel category-panel"><div class="panel-heading"><div><span class="section-index">01 / BREAKDOWN</span><h2>By category</h2></div><span class="panel-period" data-panel-month>THIS MONTH</span></div><div class="category-chart" data-category-chart></div><div class="chart-empty" data-category-empty hidden>No category spending recorded for this month.</div></article>
+        <article class="panel daily-panel"><div class="panel-heading"><div><span class="section-index">02 / ACTIVITY</span><h2>Daily spending</h2></div><span class="panel-period">BY DAY</span></div><div class="daily-chart-scroll"><div class="daily-chart" data-daily-chart></div></div><div class="chart-empty" data-daily-empty hidden>No daily activity to show.</div></article>
+      </section>
+
+      <section class="transactions-section" id="transactions">
+        <div class="transactions-heading"><div><span class="section-index">03 / YOUR RECORD</span><h2>Transactions</h2></div><span class="transaction-count" data-list-count>0 ENTRIES</span></div>
+        <div class="transaction-table-wrap"><table class="transaction-table"><thead><tr><th>DESCRIPTION</th><th>CATEGORY</th><th>DATE</th><th class="amount-column">AMOUNT</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody data-expense-list></tbody></table><div class="list-empty" data-list-empty><span class="empty-orbit" aria-hidden="true">+</span><strong>A clean slate.</strong><span>No expenses recorded for this month.</span></div></div>
+      </section>
+    </main>
+
+    <aside class="entry-column">
+      <div class="entry-header"><span class="section-index">QUICK ENTRY</span><span class="entry-status"><span></span> READY</span></div>
+      <div class="entry-intro"><div class="entry-motif" aria-hidden="true">+</div><h2>Log an<br>expense.</h2><p>Keep the small things<br>from adding up unseen.</p></div>
+      <form class="expense-form" data-expense-form>
+        <label class="form-field amount-field"><span>AMOUNT</span><div class="amount-input"><span>$</span><input name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required inputmode="decimal"></div></label>
+        <label class="form-field"><span>CATEGORY</span><select name="category" required data-category-select></select></label>
+        <label class="form-field"><span>DATE</span><input name="date" type="date" required data-date-input></label>
+        <label class="form-field"><span>DESCRIPTION</span><input name="description" type="text" maxlength="200" placeholder="What was it for?" required></label>
+        <div class="form-error" data-form-error role="alert" hidden></div>
+        <button class="submit-button" type="submit"><span>Add to ledger</span><span aria-hidden="true">↗</span></button>
+      </form>
+      <div class="entry-footnote"><span class="footnote-mark">i</span><span>Your entries are kept in memory and reset when the server restarts.</span></div>
+    </aside>
+
+    <dialog class="confirm-dialog" data-confirm-dialog>
+      <form method="dialog"><span class="dialog-kicker">REMOVE ENTRY</span><h2>Delete this expense?</h2><p>This entry will be removed from your ledger.</p><div class="dialog-actions"><button class="cancel-button" value="cancel">Keep it</button><button class="delete-button" value="delete">Delete expense</button></div></form>
+    </dialog>
+  </body>
+</html>

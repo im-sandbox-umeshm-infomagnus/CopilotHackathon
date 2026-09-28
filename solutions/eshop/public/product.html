@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17231f">
+    <title>Part details | Auto Supply</title>
+    <script src="/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/cart.js"></script>
+    <script defer src="/store.js"></script>
+    <script defer src="/product-page.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Auto Supply home"><span class="brand-mark">A</span><span>auto<span class="brand-light">supply</span></span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Parts catalog</a>
+        <a class="cart-nav" href="/cart.html"><span>Cart</span><span class="cart-count" data-cart-count>0</span></a>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button>
+    </header>
+    <main class="detail-page">
+      <a class="back-link" href="/">← Back to parts</a>
+      <div class="detail-loading" data-detail-status role="status">Loading part details...</div>
+      <section class="product-detail" data-product-detail hidden>
+        <div class="detail-visual" data-product-visual></div>
+        <div class="detail-copy" data-product-content></div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>AUTO SUPPLY / PARTS DESK</span><span>Built for the hands-on.</span></footer>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17231f">
+    <title>Auto Supply | Parts catalog</title>
+    <script src="/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/cart.js"></script>
+    <script defer src="/store.js"></script>
+    <script defer src="/catalog.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Auto Supply home"><span class="brand-mark">A</span><span>auto<span class="brand-light">supply</span></span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="nav-current" href="/">Parts catalog</a>
+        <a class="cart-nav" href="/cart.html"><span>Cart</span><span class="cart-count" data-cart-count>0</span></a>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button>
+    </header>
+    <main class="catalog-page">
+      <div class="eyebrow"><span class="eyebrow-line"></span> AUTOMOTIVE PARTS <span class="eyebrow-code">AS / 001</span></div>
+      <div class="catalog-title-row">
+        <div>
+          <h1>Find your <em>fit.</em></h1>
+          <p class="page-intro">Straightforward parts for the work ahead.</p>
+        </div>
+        <div class="catalog-total"><strong data-total>--</strong><span>PARTS IN CATALOG</span></div>
+      </div>
+
+      <form class="filter-bar" data-filter-form>
+        <label class="search-control">
+          <span class="field-label">Search parts</span>
+          <span class="search-input-wrap"><span class="search-mark" aria-hidden="true"></span><input name="q" type="search" placeholder="Name, brand, part number..." autocomplete="off"></span>
+        </label>
+        <label class="price-control">
+          <span class="field-label">Minimum price</span>
+          <span class="price-input-wrap"><span>$</span><input name="minPrice" type="number" min="0" step="0.01" placeholder="0.00"></span>
+        </label>
+        <label class="price-control">
+          <span class="field-label">Maximum price</span>
+          <span class="price-input-wrap"><span>$</span><input name="maxPrice" type="number" min="0" step="0.01" placeholder="Any"></span>
+        </label>
+        <button class="button button-dark filter-submit" type="submit">Apply filters <span aria-hidden="true">↗</span></button>
+        <button class="clear-filters" data-clear-filters type="button">Clear</button>
+      </form>
+
+      <div class="catalog-meta"><p data-results aria-live="polite">Loading parts...</p><p class="catalog-meta-right">SELECT A PART FOR SPECS <span aria-hidden="true">→</span></p></div>
+      <div class="product-grid" data-product-grid></div>
+      <div class="empty-state" data-empty-state hidden>
+        <span class="empty-mark">0</span>
+        <h2>No parts match those filters.</h2>
+        <p>Try another search or clear the price range.</p>
+      </div>
+      <div class="catalog-error" data-catalog-error role="alert" hidden></div>
+      <nav class="pagination" aria-label="Catalog pages">
+        <button class="page-button" data-previous type="button" aria-label="Previous page">←</button>
+        <span data-page-label>PAGE 1</span>
+        <button class="page-button" data-next type="button" aria-label="Next page">→</button>
+      </nav>
+    </main>
+    <footer class="site-footer"><span>AUTO SUPPLY / PARTS DESK</span><span>Built for the hands-on.</span></footer>
+  </body>
+</html>

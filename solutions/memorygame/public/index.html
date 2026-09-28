@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f2f5ef">
+    <title>Chapter Zero | A sci-fi memory game</title>
+    <script src="/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/game.js"></script>
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <div class="page-frame">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Chapter Zero home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>CHAPTER<span class="brand-light">ZERO</span></span></a>
+        <div class="header-edition"><span class="status-dot"></span> MEMORY ARCHIVE <span class="edition-divider">/</span> VOL. 01</div>
+        <div class="header-tools">
+          <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button>
+          <button class="icon-button" type="button" data-restart aria-label="Restart game" title="Restart game"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4.8 9A7.5 7.5 0 0 1 18 6l2 2M4 17v-5h5m10.2 3A7.5 7.5 0 0 1 6 18l-2-2"/></svg></button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="game-main" aria-labelledby="game-title">
+          <div class="game-heading">
+            <div class="heading-copy">
+              <div class="eyebrow"><span>FICTIONAL PEOPLE, REAL MEMORY</span><span class="eyebrow-index">CZ / 001</span></div>
+              <h1 id="game-title">The character <em>index.</em></h1>
+              <p class="intro-copy">A little recall across the universe of science fiction.</p>
+            </div>
+            <div class="round-stamp" aria-hidden="true"><span>FIELD</span><strong>NOTES</strong><i>★</i></div>
+          </div>
+
+          <section class="score-strip" aria-label="Game status">
+            <div class="score-item"><span class="score-label">ELAPSED</span><strong data-timer>00:00</strong></div>
+            <div class="score-item"><span class="score-label">ATTEMPTS</span><strong data-moves>0</strong></div>
+            <div class="score-item"><span class="score-label">PAIRS FOUND</span><strong><span data-pairs>0</span><span class="score-divider">/</span><span data-pair-total>18</span></strong></div>
+            <div class="turn-indicator" data-turn aria-live="polite"><span class="turn-dot"></span><span>Player 1's turn</span></div>
+          </section>
+
+          <div class="board-heading"><span class="section-label">TRANSMISSION GRID</span><span class="board-size-label" data-board-label>36 RECORDS</span></div>
+          <div class="board-viewport" data-board-viewport>
+            <div class="game-board" data-board data-size="6" role="group" aria-label="Memory game board"></div>
+          </div>
+          <div class="game-message" data-message aria-live="polite">Find a pair. Stay curious.</div>
+          <footer class="game-footer"><span>CHAPTER ZERO <span class="footer-slash">/</span> SCI-FI CHARACTER ARCHIVE</span><span>NO SIGNAL REQUIRED</span></footer>
+        </section>
+
+        <aside class="control-panel" aria-label="Game settings and player scores">
+          <div class="panel-top"><span class="section-label">CONFIGURATION</span><span class="panel-code">SYS. 04</span></div>
+          <fieldset class="control-group">
+            <legend>GRID SIZE</legend>
+            <div class="segmented size-options" role="group" aria-label="Grid size">
+              <button class="segment-button" type="button" data-pairs="8" aria-pressed="false"><strong>4×4</strong><span>16 cards</span></button>
+              <button class="segment-button selected" type="button" data-pairs="18" aria-pressed="true"><strong>6×6</strong><span>36 cards</span></button>
+              <button class="segment-button" type="button" data-pairs="32" aria-pressed="false"><strong>8×8</strong><span>64 cards</span></button>
+            </div>
+          </fieldset>
+          <fieldset class="control-group player-control">
+            <legend>PLAYERS</legend>
+            <div class="segmented mode-options" role="group" aria-label="Number of players">
+              <button class="segment-button selected" type="button" data-player-count="1" aria-pressed="true">Solo</button>
+              <button class="segment-button" type="button" data-player-count="2" aria-pressed="false">Two players</button>
+            </div>
+          </fieldset>
+
+          <div class="panel-divider"></div>
+          <div class="score-heading"><div><span class="section-label">SCOREBOARD</span><strong>Current run</strong></div><span class="live-tag"><span></span> LIVE</span></div>
+          <div class="player-score-card active-player" data-player-card="1"><span class="player-number">01</span><div class="player-details"><strong data-player-name="1">Player 1</strong><span data-player-caption="1">ON THE MOVE</span></div><strong class="player-points" data-player-score="1">0</strong></div>
+          <div class="player-score-card second-player" data-player-card="2" hidden><span class="player-number">02</span><div class="player-details"><strong data-player-name="2">Player 2</strong><span data-player-caption="2">READY</span></div><strong class="player-points" data-player-score="2">0</strong></div>
+
+          <div class="archive-note"><span class="note-icon" aria-hidden="true">✳</span><div><strong>Archive fragment</strong><p>Every face belongs to a different imagined future.</p></div></div>
+          <button class="new-game-button" type="button" data-restart><span>New game</span><span aria-hidden="true">↗</span></button>
+          <div class="panel-bottom"><span>ARCHIVE STATUS</span><span><i></i> READY TO PLAY</span></div>
+        </aside>
+      </main>
+    </div>
+
+    <dialog class="finish-dialog" data-finish-dialog>
+      <form method="dialog"><span class="finish-kicker">ARCHIVE COMPLETE</span><div class="finish-symbol" aria-hidden="true">✦</div><h2 data-finish-title>Well remembered.</h2><p data-finish-copy></p><button class="new-game-button" value="again"><span>Play again</span><span aria-hidden="true">↗</span></button></form>
+    </dialog>
+  </body>
+</html>
